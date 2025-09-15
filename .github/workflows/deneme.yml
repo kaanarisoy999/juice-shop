@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4   # v3 → v4
 
       - name: Build Docker image
         run: |
@@ -37,13 +37,13 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4   # v4
 
       - name: Perform Semgrep Analysis
         run: semgrep scan -q --sarif --config auto ./vulnerable-source-code > semgrep-results.sarif
 
       - name: Save SARIF results as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4   # v3 → v4
         with:
           name: semgrep-scan-results
           path: semgrep-results.sarif
@@ -59,12 +59,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4   # v2 → v4
         with:
           fetch-depth: '0'
 
       - name: gitleaks-action checkout(private)
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4   # v2 → v4
         with:
           repository: <yourOrgChangeThis>/gitleaks-action
           ref: master 
@@ -73,3 +73,4 @@ jobs:
 
       - name: run gitleaks action
         uses: ./gitleaksaction
+
